@@ -3,9 +3,8 @@
 ## Introduction
 This is the author's official PyTorch CT<sup>2</sup> implementation.
 
-We present <b>C</b>olorization <b>T</b>ransformer via <b>C</b>olor <b>T</b>okens (CT<sup>2</sup>) to colorize greyish images while dealing with incorrect semantic colors and undersaturation without any additional external priors.
+We present <b>C</b>olorization <b>T</b>ransformer via <b>C</b>olor <b>T</b>okens (CT<sup>2</sup>) to colorize grayish images while dealing with incorrect semantic colors and undersaturation without any additional external priors.
 
-With UniCoRN, users could create or edit objects with desired color and geometry. 
 <!-- ![test image size](https://github.com/shuchenweng/ct2/blob/main/photo.png){:height="50%" width="50%"} -->
  <img src="https://github.com/shuchenweng/ct2/blob/main/edit.png" width = "668" height = "780" alt="图片名称" align=center />
  
@@ -35,24 +34,20 @@ https://storage.googleapis.com/vit_models/augreg/L_16-i21k-300ep-lr_0.001-aug_me
 
 
 ## Datasets
-We use [ImageNet](https://www.image-net.org/) as our dataset, which includes 1.3M training data and covers 1000 categories. We test on the first 5k images of the public validation set, which is consistent with the previous (Colorization transformer)[https://iclr.cc/virtual/2021/poster/2844]. All the test images are center cropped and resized into 256 × 256 resolution.
+We use [ImageNet](https://www.image-net.org/) as our dataset, which includes 1.3M training data and covers 1000 categories. We test on the first 5k images of the public validation set, which is consistent with the previous [Colorization transformer](https://iclr.cc/virtual/2021/poster/2844). All the test images are center cropped and resized into 256 × 256 resolution.
 
 ### 1) Training
-PERSON-CIR dataset:
+A training script example is below:
 ```
 python -m torch.distributed.launch --nproc_per_node=8 -m segm.train --log-dir segm/vit-large --batch-size 48 --local_rank 0  --partial_finetune False --backbone vit_large_patch16_384 --color_position True --add_l1_loss True --l1_conv True --l1_weight 10 --amp
 ```
 
 ### 2) Testing
-Modify the paths of pretrained model weights in test.py L20-25, and execute commands below.
-
-Download the [pretrained weights]().
-
-PERSON-CIR dataset:
+To test your training weights, you could excute the script below:
 ```
-python test.py
+python -m torch.distributed.launch --nproc_per_node=1 -m segm.test --log-dir segm/vit-large --local_rank 0 --only_test True
 ```
-
+We also publish the [pretrained weights](https://pan.baidu.com/s/1cak_aAHIaMTVpTLP0yqRyw) here. Download it and move it to *segm/vit-large* to enjoy the colorization!
 
 ## License
 Licensed under a [Creative Commons Attribution-NonCommercial 4.0 International](https://creativecommons.org/licenses/by-nc/4.0/).
@@ -69,7 +64,3 @@ If you use this code for your research, please cite our papers [CT<sup>2</sup>: 
   year = {2022}
 }
 ```
-
-
-Test images from ImageNet val set
-ImageNet val5k (link)

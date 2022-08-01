@@ -1,1 +1,18 @@
-We will publish our code soon
+Installation
+
+pip install -r requirement.txt
+
+
+Download the vit models
+
+'vit_large_patch16_384': 
+按下面链接下载并移到segm/resources/vit_large_patch16_384.npz位置
+https://storage.googleapis.com/vit_models/augreg/L_16-i21k-300ep-lr_0.001-aug_medium1-wd_0.1-do_0.1-sd_0.1--imagenet2012-steps_20k-lr_0.01-res_384.npz
+
+
+Training scripts
+(V100x12)
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7,8,9,10,11 python -m torch.distributed.launch --nproc_per_node=12 -m segm.train --log-dir segm/vit-large --batch-size 60 --local_rank 0  --partial_finetune False --backbone vit_large_patch16_384 --color_position True --add_l1_loss True --l1_conv True --l1_weight 10 --amp
+
+Test images from ImageNet val set
+ImageNet val5k (link)

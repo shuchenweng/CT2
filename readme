@@ -1,18 +1,75 @@
-Installation
+# CT<sup>2</sup>: Colorization Transformer via Color Tokens (official)
 
+## Introduction
+This is the author's official PyTorch CT<sup>2</sup> implementation.
+
+We present <b>C</b>olorization <b>T</b>ransformer via <b>C</b>olor <b>T</b>okens (CT<sup>2</sup>) to colorize greyish images while dealing with incorrect semantic colors and undersaturation without any additional external priors.
+
+With UniCoRN, users could create or edit objects with desired color and geometry. 
+<!-- ![test image size](https://github.com/shuchenweng/ct2/blob/main/photo.png){:height="50%" width="50%"} -->
+ <img src="https://github.com/shuchenweng/ct2/blob/main/edit.png" width = "668" height = "780" alt="图片名称" align=center />
+ 
+
+## Prerequisites
+* Python 3.6
+* PyTorch 1.10
+* NVIDIA GPU + CUDA cuDNN
+
+## Installation
+Clone this repo: 
+```
+git clone https://github.com/shuchenweng/ct2.git
+```
+Install PyTorch and dependencies
+```
+http://pytorch.org
+```
+Install other python requirements
+```
 pip install -r requirement.txt
-
-
-Download the vit models
-
-'vit_large_patch16_384': 
-按下面链接下载并移到segm/resources/vit_large_patch16_384.npz位置
+```
+Download the pretrained vit model and move it to *segm/resources/vit_large_patch16_384.npz*
+```
 https://storage.googleapis.com/vit_models/augreg/L_16-i21k-300ep-lr_0.001-aug_medium1-wd_0.1-do_0.1-sd_0.1--imagenet2012-steps_20k-lr_0.01-res_384.npz
+```
 
 
-Training scripts
-(V100x12)
-CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7,8,9,10,11 python -m torch.distributed.launch --nproc_per_node=12 -m segm.train --log-dir segm/vit-large --batch-size 60 --local_rank 0  --partial_finetune False --backbone vit_large_patch16_384 --color_position True --add_l1_loss True --l1_conv True --l1_weight 10 --amp
+## Datasets
+We use [ImageNet](https://www.image-net.org/) as our dataset, which includes 1.3M training data and covers 1000 categories. We test on the first 5k images of the public validation set, which is consistent with the previous (Colorization transformer)[https://iclr.cc/virtual/2021/poster/2844]. All the test images are center cropped and resized into 256 × 256 resolution.
+
+### 1) Training
+PERSON-CIR dataset:
+```
+python -m torch.distributed.launch --nproc_per_node=8 -m segm.train --log-dir segm/vit-large --batch-size 48 --local_rank 0  --partial_finetune False --backbone vit_large_patch16_384 --color_position True --add_l1_loss True --l1_conv True --l1_weight 10 --amp
+```
+
+### 2) Testing
+Modify the paths of pretrained model weights in test.py L20-25, and execute commands below.
+
+Download the [pretrained weights]().
+
+PERSON-CIR dataset:
+```
+python test.py
+```
+
+
+## License
+Licensed under a [Creative Commons Attribution-NonCommercial 4.0 International](https://creativecommons.org/licenses/by-nc/4.0/).
+
+Except where otherwise noted, this content is published under a [CC BY-NC](https://creativecommons.org/licenses/by-nc/4.0/) license, which means that you can copy, remix, transform and build upon the content as long as you do not use the material for commercial purposes and give appropriate credit and provide a link to the license.
+
+## Citation
+If you use this code for your research, please cite our papers [CT<sup>2</sup>: Colorization Transformer via Color Tokens](https://ci.idm.pku.edu.cn/Weng_ECCV22b.pdf)
+```
+@InProceedings{UniCoRN,
+  author = {Weng, Shuchen and Sun, Jimeng and Li, Yu and Li, Si and Shi, Boxin},
+  title = {CT<sup>2</sup>: Colorization Transformer via Color Tokens},
+  booktitle = {{ECCV}},
+  year = {2022}
+}
+```
+
 
 Test images from ImageNet val set
 ImageNet val5k (link)

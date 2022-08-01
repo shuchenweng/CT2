@@ -1,9 +1,9 @@
 # CT<sup>2</sup>: Colorization Transformer via Color Tokens (official)
 
 ## Introduction
-This is the author's official PyTorch CT<sup>2</sup> implementation.
+This is the author's official PyTorch <b>CT<sup>2</sup></b> implementation.
 
-We present <b>C</b>olorization <b>T</b>ransformer via <b>C</b>olor <b>T</b>okens (CT<sup>2</sup>) to colorize grayish images while dealing with incorrect semantic colors and undersaturation without any additional external priors.
+We present <b>C</b>olorization <b>T</b>ransformer via <b>C</b>olor <b>T</b>okens (<b>CT<sup>2</sup></b>) to colorize grayish images while dealing with incorrect semantic colors and undersaturation without any additional external priors.
 
 <!-- ![test image size](https://github.com/shuchenweng/CT2/blob/main/application.png){:height="100%" width="100%"} -->
  <img src="https://github.com/shuchenweng/CT2/blob/main/application.png" align=center />

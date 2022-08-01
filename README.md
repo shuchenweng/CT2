@@ -5,8 +5,8 @@ This is the author's official PyTorch CT<sup>2</sup> implementation.
 
 We present <b>C</b>olorization <b>T</b>ransformer via <b>C</b>olor <b>T</b>okens (CT<sup>2</sup>) to colorize grayish images while dealing with incorrect semantic colors and undersaturation without any additional external priors.
 
-<!-- ![test image size](https://github.com/shuchenweng/ct2/blob/main/photo.png){:height="50%" width="50%"} -->
- <img src="https://github.com/shuchenweng/ct2/blob/main/edit.png" width = "668" height = "780" alt="图片名称" align=center />
+<!-- ![test image size](https://github.com/shuchenweng/CT2/blob/main/application.png){:height="100%" width="100%"} -->
+ <img src="https://github.com/shuchenweng/CT2/blob/main/application.png" align=center />
  
 
 ## Prerequisites
@@ -17,7 +17,7 @@ We present <b>C</b>olorization <b>T</b>ransformer via <b>C</b>olor <b>T</b>okens
 ## Installation
 Clone this repo: 
 ```
-git clone https://github.com/shuchenweng/ct2.git
+git clone https://github.com/shuchenweng/CT2.git
 ```
 Install PyTorch and dependencies
 ```
@@ -59,7 +59,7 @@ If you use this code for your research, please cite our papers [CT<sup>2</sup>: 
 ```
 @InProceedings{UniCoRN,
   author = {Weng, Shuchen and Sun, Jimeng and Li, Yu and Li, Si and Shi, Boxin},
-  title = {CT<sup>2</sup>: Colorization Transformer via Color Tokens},
+  title = {CT2: Colorization Transformer via Color Tokens},
   booktitle = {{ECCV}},
   year = {2022}
 }

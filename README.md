@@ -47,7 +47,7 @@ To test your training weights, you could excute the script below:
 ```
 python -m torch.distributed.launch --nproc_per_node=1 -m segm.test --log-dir segm/vit-large --local_rank 0 --only_test True
 ```
-We also publish the [pretrained weights](https://pan.baidu.com/s/1cak_aAHIaMTVpTLP0yqRyw) here. Download it and move it to *segm/vit-large* to enjoy the colorization!
+We also publish the [pretrained weights](https://pan.baidu.com/s/1cak_aAHIaMTVpTLP0yqRyw) here. Download it with extraction code *v4ay* and move it to *segm/vit-large* to enjoy the colorization!
 
 ## License
 Licensed under a [Creative Commons Attribution-NonCommercial 4.0 International](https://creativecommons.org/licenses/by-nc/4.0/).

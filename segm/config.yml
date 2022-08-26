@@ -163,7 +163,7 @@ dataset:
     window_size: 768
     window_stride: 512
   coco:
-    dataset_dir: '/userhome/sjm/'
+    dataset_dir: 'E:/samsung/datasets/imagenetval/val5000'
     epochs: 256
 #    batch_size: 16
     batch_size: 2
@@ -173,7 +173,7 @@ dataset:
     window_size: 256    # use in inference...
     window_stride: 256
   random:
-    dataset_dir: '/userhome/sjm/'
+    dataset_dir: 'E:/samsung/datasets/imagenetval/val5000'
     epochs: 256
     #    batch_size: 16
     batch_size: 2

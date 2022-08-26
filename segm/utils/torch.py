@@ -23,9 +23,9 @@ def set_gpu_mode(mode, local_rank):
     global distributed
     global dist_rank
     global world_size
-    gpu_id = int(os.environ.get('LOCAL_RANK'))
+    gpu_id = 0 #int(os.environ.get('local_ranks')) #int(os.environ.get('LOCAL_RANK'))
     dist_rank = 0
-    world_size = len(os.environ.get('CUDA_VISIBLE_DEVICES').split(','))
+    world_size = 1 #len(os.environ.get('CUDA_VISIBLE_DEVICES').split(',')) #len(os.environ.get('CUDA_VISIBLE_DEVICES').split(','))
     distributed = world_size > 1
     use_gpu = mode
     torch.cuda.set_device(gpu_id)

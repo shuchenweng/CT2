@@ -52,8 +52,8 @@ class COCODataset(Dataset):
         self.n_cls = n_cls
 
         if self.add_mask:
-            assert os.path.exists(os.path.join(self.dataset_dir, 'mask_prior.pickle'))
-            fp = open(os.path.join(self.dataset_dir, 'mask_prior.pickle'), 'rb')
+            assert os.path.exists(os.path.join('./', 'mask_prior.pickle'))
+            fp = open(os.path.join('./', 'mask_prior.pickle'), 'rb')
             L_dict = pickle.load(fp)
             self.mask_L = np.zeros((mask_num, 313)).astype(np.bool)     # [4, 313]
             for key in range(101):

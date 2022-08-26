@@ -36,7 +36,7 @@ import collections
 @click.option("--crop-size", default=256, type=int)
 @click.option("--window-size", default=256, type=int)
 @click.option("--window-stride", default=None, type=int)
-@click.option("--backbone", default="vit_tiny_patch16_384", type=str)       # try this, and freeze first several blocks.
+@click.option("--backbone", default="vit_large_patch16_384", type=str)       # try this, and freeze first several blocks.
 @click.option("--decoder", default="mask_transformer", type=str)
 @click.option("--optimizer", default="sgd", type=str)
 @click.option("--scheduler", default="polynomial", type=str)
@@ -132,7 +132,7 @@ def main(
     # start distributed mode
     ptu.set_gpu_mode(True, local_rank)
     # distributed.init_process()
-    torch.distributed.init_process_group(backend="nccl")
+    torch.distributed.init_process_group(backend="gloo")
 
     # set up configuration
     cfg = config.load_config()
@@ -270,11 +270,12 @@ def main(
         amp_autocast = torch.cuda.amp.autocast
         loss_scaler = NativeScaler()
     # resume
-    if resume and checkpoint_path.exists():
-        print(f"Resuming training from checkpoint: {checkpoint_path}")
-        checkpoint = torch.load(checkpoint_path, map_location="cpu")
-        print('checkpoint:', checkpoint)
-        model.load_state_dict(checkpoint["model"])
+    assert resume
+    assert checkpoint_path.exists()
+    print(f"Resuming training from checkpoint: {checkpoint_path}")
+    checkpoint = torch.load(checkpoint_path, map_location="cpu")
+    # print('checkpoint:', checkpoint)
+    model.load_state_dict(checkpoint["model"])
 
     if ptu.distributed:
         print('Distributed:', ptu.distributed)

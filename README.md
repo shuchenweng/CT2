@@ -62,7 +62,7 @@ Except where otherwise noted, this content is published under a [CC BY-NC](https
 ## Citation
 If you use this code for your research, please cite our papers [CT<sup>2</sup>: Colorization Transformer via Color Tokens](https://ci.idm.pku.edu.cn/Weng_ECCV22b.pdf)
 ```
-@InProceedings{UniCoRN,
+@InProceedings{CT2,
   author = {Weng, Shuchen and Sun, Jimeng and Li, Yu and Li, Si and Shi, Boxin},
   title = {CT2: Colorization Transformer via Color Tokens},
   booktitle = {{ECCV}},

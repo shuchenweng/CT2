@@ -51,9 +51,6 @@ We also publish the [pretrained weights](https://pan.baidu.com/s/1cak_aAHIaMTVpT
 
 If the colorization results are weired, please carefully check whether the pretrained weight path is correctly set.
 
-### 3) Colab
-Don't worry! We're doing it!
-
 ## License
 Licensed under a [Creative Commons Attribution-NonCommercial 4.0 International](https://creativecommons.org/licenses/by-nc/4.0/).
 
